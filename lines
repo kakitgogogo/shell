@@ -11,8 +11,9 @@ function print_align {
 
 function count_file_lines {
 	local lines
-	files_count=$[ $files_count + 1]
 	lines=`sed '/^$/d' $1 | wc -l`
+	lines_count=$[ $lines_count + $lines ]
+	files_count=$[ $files_count + 1]
 	print_align $1 $lines
 	return $lines
 }
@@ -28,10 +29,7 @@ function count_dir_lines {
 		else
 			count_file_lines $file_or_dir
 		fi
-		lines_count=$[ $lines_count + $? ]
-		lines=$[ $lines + 1 ]
 	done
-	return $lines
 }
 
 count_dir_lines "."
