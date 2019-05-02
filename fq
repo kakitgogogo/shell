@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ $1 == "on" ]
+then
+    gsettings set org.gnome.system.proxy.socks host '127.0.0.1'
+    gsettings set org.gnome.system.proxy.socks port 1080
+    gsettings set org.gnome.system.proxy mode 'manual'
+elif [ $1 == "off" ]
+then 
+    gsettings set org.gnome.system.proxy mode 'none'
+else
+    echo "invalid operation"
+fi
